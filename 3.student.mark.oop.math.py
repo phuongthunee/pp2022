@@ -1,19 +1,32 @@
+import math
+
 class Student: 
-    def __init__(self, Student_ID, Student_Name, Student_DoB):
+    def __init__(self, Student_ID, Student_Name, Student_DoB, StudentMark):
         self.ID = Student_ID
         self.Name = Student_Name 
         self.DoB = Student_DoB
+        self.Mark = StudentMark
+        self.GPA = 0
         
     def getStudentInfor(self):
         return self.ID, self.Name, self.DoB
-      
+    
+    def get_GPA(self):
+        return self.GPA
+    def set_GPA(self, Student_GPA):
+        self.GPA = Student_GPA 
+        
 class Course:
-    def __init__(self, Course_ID, Course_Name):
+    def __init__(self, Course_ID, Course_Name, Course_Credits,):
         self.ID = Course_ID
         self.Name = Course_Name
+        self.Credit = Course_Credits
         
     def getCourseInfor (self):
         return self.ID, self.Name
+    
+    def gpa (self):
+        return self.Credit + self.Mark
     
 class Mark:
     def __init__ (self, Mark):
@@ -29,7 +42,7 @@ def numOfStudents ():
 #-----------------------------------------
 # Input student information: id, name, DoB
 print ("STUDENT INFORMATION")
-inforS = numOfStudents () 
+inforS = numOfStudents ()
 listOfStudents = []   
 for i in range (inforS): 
     Student_ID = input ("ID: ")
@@ -60,10 +73,12 @@ listOfCourses = []
 for i in range (inforC):
     Course_ID = input ("ID: ")
     Course_Name = input ("Name: ")
+    Course_Credits = input ("Credit(s): ")
     print ("") 
     inforC = {"ID": Course_ID,
-              "Name": Course_Name}
-    listOfCourses.append (Course(Course_ID, Course_Name))
+              "Name": Course_Name,
+              "Credit(s)": Course_Credits}
+    listOfCourses.append (Course(Course_ID, Course_Name, Course_Credits))
 print ("No.\t ID\t Name\t ")
 for i in range (0, len(listOfCourses), 1):
     s = listOfCourses[i]
@@ -94,6 +109,9 @@ if selectCourse in StudentMark:
     for i in range (len(numOfStudents)):
         print (f"Student {Student_ID[i]}: {StudentMark[selectCourse][i]}")
 else:
-    print ("Wrong! Input again...")    
+    print ("Wrong! Input again...")  
+    
+StudentMark.sort(key = len)
+print (math.floor(StudentMark))    
     
 print ("Done!")
