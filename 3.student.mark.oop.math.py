@@ -17,7 +17,7 @@ class Student:
         self.GPA = Student_GPA 
         
 class Course:
-    def __init__(self, Course_ID, Course_Name, Course_Credits,):
+    def __init__(self, Course_ID, Course_Name, Course_Credits):
         self.ID = Course_ID
         self.Name = Course_Name
         self.Credit = Course_Credits
